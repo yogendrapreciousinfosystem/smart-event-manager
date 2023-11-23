@@ -1,0 +1,51 @@
+<style>
+  .header-container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-container h1 {
+    color: #333;
+    margin: 0;
+  }
+
+  .login-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .login-button, .logout-button {
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  .edit-button {
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28a745; /* Choose a suitable color */
+    cursor: pointer;
+  }
+  .login-button {
+    background-color: #00fff3;
+  }
+
+  .logout-button {
+    background-color: #ff4c4c;
+  }
+</style>
+
+<div class="header-container">
+  <h1>Welcome to the Smart Event Manager!</h1>
+  <div class="login-buttons">
+    <%= link_to 'Log in', new_account_session_path, class: 'login-button' %>
+    <%= link_to 'Log out', destroy_account_session_path, method: :delete, class: 'logout-button' %>
+    <%= link_to 'Edit Account', edit_account_registration_path, class: 'edit-button' %>
+  </div>
+</div>
