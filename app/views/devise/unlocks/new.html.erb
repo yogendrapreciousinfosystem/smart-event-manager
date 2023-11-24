@@ -1,16 +1,90 @@
-<h2>Resend unlock instructions</h2>
+<style>
+  .header-container {
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  .header-container h1 {
+    color: #333;
+    margin: 0;
+  }
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  .login-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .login-button, .logout-button, .edit-button {
+    padding: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .edit-button {
+    background-color: #28a745; /* Choose a suitable color */
+  }
+
+  .login-button {
+    background-color: #00fff3;
+  }
+
+  .logout-button {
+    background-color: #ff4c4c;
+  }
+
+  /* Style for Resend unlock instructions */
+  .resend-instructions-container {
+    margin-top: 20px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  .resend-form {
+    margin-top: 10px;
+  }
+
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .actions {
+    margin-top: 10px;
+  }
+
+  /* Add any additional styling as needed */
+</style>
+
+<div class="header-container">
+  <h1>Welcome to the Smart Event Manager!</h1>
+  <div class="login-buttons">
+    <%= link_to 'Log in', new_account_session_path, class: 'login-button' %>
+    <%= link_to 'Log out', destroy_account_session_path, method: :delete, class: 'logout-button' %>
+    <%= link_to 'Edit Account', edit_account_registration_path, class: 'edit-button' %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
+<div class="resend-instructions-container">
+  <h2>Resend unlock instructions</h2>
 
-<%= render "devise/shared/links" %>
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }, class: 'resend-form') do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Resend unlock instructions" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
