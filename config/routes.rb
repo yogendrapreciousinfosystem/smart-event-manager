@@ -8,4 +8,11 @@ Rails.application.routes.draw do
     registrations: 'accounts/registrations',
     sessions: 'accounts/sessions'
   }
+  
+  devise_scope :account do
+    get 'accounts/show', to: 'accounts/registrations#show'
+  end
+
+  resources :events
+
 end
