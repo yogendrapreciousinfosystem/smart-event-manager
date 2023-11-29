@@ -1,11 +1,86 @@
+
 <style>
-  /* Your existing styles... */
+  .edit-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .submit-button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .field label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .remember-me input {
+    margin-right: 8px;
+  }
+
+  .links {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .links a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <div class="edit-form">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Edit Account</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'edit-form' }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: account_registration_path(resource_name), html: { method: :put, class: 'edit-form' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
@@ -15,7 +90,12 @@
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email, class: 'input-field' %>
+      <%= f.email_field :email, autocomplete: "email", class: 'input-field' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :role %><br />
+      <%= f.collection_select :role_id, Role.all, :id, :name, { prompt: "Select Role" }, { selected: @account.role_id, class: 'input-field' } %>
     </div>
 
     <div class="field">
@@ -25,23 +105,18 @@
 
     <div class="field">
       <%= f.label :country_code %><br />
-      <%= f.text_field :country_code, class: 'input-field' %>
+      <%= f.number_field :country_code, class: 'input-field' %>
     </div>
 
     <div class="field">
       <%= f.label :activated %><br />
-      <%= f.check_box :activated, class: 'input-field' %>
-    </div>
-
-    <div class="field">
-      <%= f.label :type %><br />
-      <%= f.text_field :type, class: 'input-field' %>
+      <%= f.check_box :activated %>
     </div>
 
     <div class="field">
       <%= f.label :gender %><br />
-      <%= f.text_field :gender, class: 'input-field' %>
-    </div>
+      <%= f.select :gender, Account.genders.keys.map { |key| [key.capitalize, key.downcase] }, { prompt: "Select Gender" }, class: 'input-field' %>
+      </div>
 
     <div class="field">
       <%= f.label :age %><br />
@@ -53,24 +128,12 @@
       <%= f.text_field :country_name, class: 'input-field' %>
     </div>
 
-    <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input-field' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: 'input-field' %>
-  </div>
-
     <div class="actions">
       <%= f.submit "Update", class: 'submit-button' %>
     </div>
   <% end %>
 
-  <h3>Cancel my account</h3>
-
-  <div class="cancel-account">Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-  <%= link_to "Back", :back %>
+  <div class="links">
+    <%= link_to "Back", :back, class: 'back-link' %>
+  </div>
 </div>

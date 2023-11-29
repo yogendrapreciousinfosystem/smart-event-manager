@@ -40,12 +40,21 @@
     background-color: #ff4c4c;
   }
 </style>
-
+<!--
 <div class="header-container">
   <h1>Welcome to the Smart Event Manager!</h1>
-  <div class="login-buttons">
-    <%= link_to 'Log in', new_account_session_path, class: 'login-button' %>
-    <%= link_to 'Log out', destroy_account_session_path, method: :delete, class: 'logout-button' %>
-    <%= link_to 'Edit Account', edit_account_registration_path, class: 'edit-button' %>
-  </div>
+ 
+  <% if current_account   %>
+    <%= link_to 'Edit Profile', edit_account_registration_path %>
+    <%= button_to "Logout", destroy_account_session_path, method: :delete %>
+  <% else %>
+    <%= button_to "Log in", new_account_session_path %>
+    <%= link_to 'Sign Up', new_account_registration_path  %>
+  <% end %>
+  -->
+  <h1>All Events</h1>
+
+<%= link_to 'View All Events', events_path %> <!-- Add this line -->
+
+<table>
 </div>

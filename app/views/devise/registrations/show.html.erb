@@ -1,49 +1,78 @@
 <style>
-  /* Your existing styles... */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+  .user-table th {
+  }
 </style>
 
 <div class="show-form">
-  <h2>Show <%= resource_name.to_s.humanize %></h2>
+  <h2>Show Profile</h2>
 
-  <div class="field">
-    <strong><%= resource_name.to_s.humanize %>:</strong> <%= @account.full_name %>
+  <table class="user-table">
+    <tr>
+      <th>Name</th>
+      <td><%= @account.full_name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @account.email %></td>
+    </tr>
+    <tr>
+      <th>Phone Number</th>
+      <td><%= @account.full_phone_number %></td>
+    </tr>
+    <tr>
+      <th>Country Code</th>
+      <td><%= @account.country_code %></td>
+    </tr>
+    <tr>
+      <th>Activated</th>
+      <td><%= @account.activated %></td>
+    </tr>
+    <tr>
+      <th>Gender</th>
+      <td><%= @account.gender&.capitalize %></td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td><%= @account.age %></td>
+    </tr>
+    <tr>
+      <th>Country Name</th>
+      <td><%= @account.country_name %></td>
+    </tr>
+  </table>
+
+  <div class="ms-2">
+    <%= button_to "Edit Profile", edit_account_registration_path, method: :get, class: 'btn btn-danger' %>
   </div>
 
-  <div class="field">
-    <strong>Email:</strong> <%= @account.email %>
+  <div class="ms-2"> <br>
+    <%= button_to "Cancel my account", account_registration_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %>
   </div>
+  <!--
+  <div class="ms-2"> <br>
+    <%= button_to "Change Password", edit_account_password_path(reset_password_token: @account.reset_password_token),method: :get,  class: 'btn btn-danger' %>
+  </div> -->
 
-  <div class="field">
-    <strong>Full Phone Number:</strong> <%= @account.full_phone_number %>
+  <div class="ms-2"> <br>
+    <button onclick="goBack()" class="back-link">Back</button>
   </div>
-
-  <div class="field">
-    <strong>Country Code:</strong> <%= @account.country_code %>
-  </div>
-
-  <div class="field">
-    <strong>Activated:</strong> <%= @account.activated %>
-  </div>
-
-  <div class="field">
-    <strong>Type:</strong> <%= @account.type %>
-  </div>
-
-  <div class="field">
-    <strong>Gender:</strong> <%= @account.gender %>
-  </div>
-
-  <div class="field">
-    <strong>Age:</strong> <%= @account.age %>
-  </div>
-
-  <div class="field">
-    <strong>Country Name:</strong> <%= @account.country_name %>
-  </div>
-
-  <%= button_to "Edit Profile", edit_account_registration_path, method: :get, class: 'btn btn-danger' %>
-
-  <%= button_to "Cancel my account", account_registration_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'cancel-account' %>
-
-  <%= button_to "Back", :back, class: 'back-link' %>
 </div>
+
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>

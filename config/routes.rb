@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   
   devise_for :accounts, controllers: {
     registrations: 'accounts/registrations',
-    sessions: 'accounts/sessions'
+    sessions: 'accounts/sessions',
+    passwords: 'accounts/passwords'
   }
   
   devise_scope :account do
