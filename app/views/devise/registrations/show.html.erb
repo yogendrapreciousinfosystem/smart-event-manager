@@ -1,0 +1,49 @@
+<style>
+  /* Your existing styles... */
+</style>
+
+<div class="show-form">
+  <h2>Show <%= resource_name.to_s.humanize %></h2>
+
+  <div class="field">
+    <strong><%= resource_name.to_s.humanize %>:</strong> <%= @account.full_name %>
+  </div>
+
+  <div class="field">
+    <strong>Email:</strong> <%= @account.email %>
+  </div>
+
+  <div class="field">
+    <strong>Full Phone Number:</strong> <%= @account.full_phone_number %>
+  </div>
+
+  <div class="field">
+    <strong>Country Code:</strong> <%= @account.country_code %>
+  </div>
+
+  <div class="field">
+    <strong>Activated:</strong> <%= @account.activated %>
+  </div>
+
+  <div class="field">
+    <strong>Type:</strong> <%= @account.type %>
+  </div>
+
+  <div class="field">
+    <strong>Gender:</strong> <%= @account.gender %>
+  </div>
+
+  <div class="field">
+    <strong>Age:</strong> <%= @account.age %>
+  </div>
+
+  <div class="field">
+    <strong>Country Name:</strong> <%= @account.country_name %>
+  </div>
+
+  <%= button_to "Edit Profile", edit_account_registration_path, method: :get, class: 'btn btn-danger' %>
+
+  <%= button_to "Cancel my account", account_registration_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'cancel-account' %>
+
+  <%= button_to "Back", :back, class: 'back-link' %>
+</div>
