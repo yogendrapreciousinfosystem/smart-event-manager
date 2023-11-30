@@ -24,7 +24,7 @@ ActiveAdmin.register Account do
       row :country_code
       row :activated, as: :checkbox
       row :device_id
-      row :type
+      row :role
       row :gender
       row :date_of_birth
       row :age
@@ -36,16 +36,16 @@ ActiveAdmin.register Account do
 
   form do |f|
     f.inputs 'Account Details' do
+      f.input :role
       f.input :full_name
       f.input :email
       f.input :full_phone_number
       f.input :country_code
-      f.input :activated
-      f.input :type
       f.input :gender
       # f.input :date_of_birth
       f.input :age
       f.input :country_name
+      f.input :activated
     end
     f.actions
   end
