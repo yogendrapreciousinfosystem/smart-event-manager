@@ -9,3 +9,7 @@
 unless AdminUser.find_by_email('admin@example.com')
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
+
+['Customer', 'Vendor', 'Employee'].each do |role|
+  Role.find_or_create_by!(name: role)
+end

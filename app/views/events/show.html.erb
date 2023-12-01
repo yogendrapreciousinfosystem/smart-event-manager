@@ -1,0 +1,19 @@
+<h1><%= @event.title %></h1>
+
+<p><strong>Description:</strong> <%= @event.description %></p>
+<p><strong>Event Type:</strong> <%= @event.event_type %></p>
+<p><strong>Start Time:</strong> <%= @event.start_time %></p>
+<p><strong>End Time:</strong> <%= @event.end_time %></p>
+<p><strong>Capacity:</strong> <%= @event.capacity %></p>
+<p><strong>Public:</strong> <%= @event.public ? 'Yes' : 'No' %></p>
+<p><strong>Account ID:</strong> <%= @event.account_id %></p>
+<p><strong>Event Date:</strong> <%= @event.event_date %></p>
+<p><strong>Latitude:</strong> <%= @event.latitude %></p>
+<p><strong>Longitude:</strong> <%= @event.longitude %></p>
+<p><strong>Location:</strong> <%= @event.location %></p>
+<p><strong>Notify:</strong> <%= @event.notify %></p>
+<p><strong>Repeat:</strong> <%= @event.repeat %></p>
+<p><strong>Notes:</strong> <%= @event.notes %></p>
+<p><strong>Address:</strong> <%= @event.address %></p>
+
+<%= link_to 'Back', events_path %>
