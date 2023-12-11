@@ -1,6 +1,6 @@
 <% if current_account %>
 
-  <%= form_with model: event, url: events_path, html: { multipart: true } do |form| %>
+  <%= form_with model: event, url: (event.persisted? ? event_path(event) : events_path), method: (event.persisted? ? :patch : :post), html: { multipart: true } do |form| %>
 
     <div class="form-group">
       <%= form.label :title %>
@@ -84,7 +84,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.submit 'Create Event', class: 'btn btn-primary' %>
+      <%= form.submit event.persisted? ? 'Update Event' : 'Create Event', class: 'btn btn-primary' %>
     </div>
   <% end %>
     

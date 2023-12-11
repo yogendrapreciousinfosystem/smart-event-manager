@@ -1,0 +1,33 @@
+<!-- app/views/events/index.html.erb -->
+<h1 style="text-align: center;">All Events</h1>
+
+<div class="row tm-row">
+  <% @events.each do |event| %>
+    <article class="col-12 col-md-6 tm-post">
+      <hr class="tm-hr-primary">
+      <%= link_to event_path(event), class: "effect-lily tm-post-link tm-pt-60" do %>
+        <div class="tm-post-link-inner">
+          <%= image_tag(event.image, alt: "Event Image", class: "img-fluid") if event.image.attached? %>
+        </div>
+        <span class="position-absolute tm-new-badge">New</span>
+        <h2 class="tm-pt-30 tm-color-primary tm-post-title"><%= event.title %></h2>
+      <% end %>
+      <p class="tm-pt-30">
+        <%= event.description %>
+      </p>
+      <div class="d-flex justify-content-between tm-pt-45">
+        <span class="tm-color-primary">Category: <%= event.event_type %></span>
+        <span class="tm-color-primary">Date: <%= event.start_time.strftime("%B %d, %Y") %></span>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <span><%= pluralize(event, 'comment') %></span>
+        <span>by <%= event %></span> <!-- Assuming there is a user association -->
+      </div>
+    </article>
+  <% end %>
+</div>
+
+<% if current_account %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
